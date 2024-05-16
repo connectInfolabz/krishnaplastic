@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Facnex - Industry & Factory HTML Template">
+    <meta name="keywords" content="new, html, Facnex, design, Consulting, Business, Portfolio, Agency, advanced,">
+    <link rel="shortcut icon" href=" {% static 'assets/images/favicon.ico' %} " title="Favicon" sizes="16x16"/>
+    <!-- Main Page Title -->
+    <title>{% block title %} {% endblock %}</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
+
+
+    <!-- plugins css -->
+    <link rel="stylesheet" href=" {% static 'assets/css/plugins.css' %} ">
+    <!-- flaticon  -->
+    <link rel="stylesheet" href=" {% static 'assets/fonts/flaticon.css' %} ">
+    <link rel="stylesheet" href=" {% static 'assets/css/main.css' %} ">
+    <!-- responsive css -->
+    <link rel="stylesheet" href=" {% static 'assets/css/responsive.css' %} "> 
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body>
+
+    <!--==================================================================== 
+							Start Loading Screen
+	=====================================================================-->
+
+<div class="loading-screen">
+    
+    <div class="display-table">
+        <div class="table-cell">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+    
+    </div>
+    
+</div>
+    <!--==================================================================== 
+							End Loading Screen
+	=====================================================================-->
+<!--====================================================================
+                        Start Upperbar
+=====================================================================-->
+    <div class="upper-bar upper-bar-two">
+    <div class="container">
+        <div class="row">
+             <!-- Item Contact US Bar -->
+            <div class="col-12">
+                <div class="contact-us-bar">
+                    <div class="row">
+                        <div class="col-12" style="text-align:right;">
+                            {% if request.session.log_id %}
+                                <a href="/logout" style="color: #ff6119;" class="text-btn">Logout</a>
+                            {% else %}
+                                <a href="/login" style="color: #ff6119;" data-toggle="modal" data-target="#loginModal" class="text-btn">Login</a>
+                                <a href="/register" style="color: #ff6119;" data-toggle="modal" data-target="#registerModal" class="text-btn">Register</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="text-align: left;color: #ff6119;">Login</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                 <form  action="/logindata" method="post" class="form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="Your Email">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="password" name="pass" placeholder="Your Passowrd">
+                                </div>
+                            </div>
+                        </div>
+                                     <!-- Button two -->
+                        <button type="submit" class="main-btn-two" style="border: none;">
+                            <div class="text-btn">
+                                <span class="text-btn-one">Login</span>
+                                <span class="text-btn-two">Login</span>
+                            </div>
+                            <div class="arrow-btn">
+                                <span class="arrow-one"><i class="fas fa-caret-right"></i></span>
+                                <span class="arrow-two"><i class="fas fa-caret-right"></i></span>
+                            </div>
+                        </button>
+                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="text-align: left;color: #ff6119;">Register</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                 <form  action="/register" method="post" class="form" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="name" placeholder="Your Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" name="email" placeholder="Your Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="phone" placeholder="Your Phone Number" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" name="pass" placeholder="Your Password" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="file" name="photo" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                     <!-- Button two -->
+                    <button type="submit" class="main-btn-two" style="border: none;">
+                        <div class="text-btn">
+                            <span class="text-btn-one">Register</span>
+                            <span class="text-btn-two">Register</span>
+                        </div>
+                        <div class="arrow-btn">
+                            <span class="arrow-one"><i class="fas fa-caret-right"></i></span>
+                            <span class="arrow-two"><i class="fas fa-caret-right"></i></span>
+                        </div>
+                    </button>
+                            </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--====================================================================
+                        End Upperbar
+=====================================================================-->
+<!--====================================================================
+                            Start Navbar
+====================================================================-->
+    <nav class="nav-bar nav-bar-two sticky-navbar">
+    <!-- Background Color White -->
+    <div>
+      <!-- Output Navbar -->
+      <div class="nav-output">
+        <!-- Container  -->
+        <div class="container container-nav">
+            <!-- Row -->
+            <div class="row">
+                <!-- Column of Logo -->
+                <div class="col-lg-3 col-12">
+                   <!-- My Logo -->
+                   <a href="/" class="my-logo">
+                       <img class="logo-two" src=" {% static 'assets/images/logo/logo-2.png' %} " alt="logo">
+                   </a>
+
+                   <!-- Button Menu -->
+                   <a href="#" class="navbar-toggle">
+                       <span></span>
+                       <span></span>
+                       <span></span>
+                   </a>
+
+                </div>
+
+                <!-- Column of Links -->
+                <div class="col-lg-9 col-md-12 position-inherit">
+                 <!-- Icons  -->
+                    <div class="icon-links">
+                        <br>
+                        <!-- Start Btn Side Menu -->
+                        <!-- Start Btn Side Menu -->
+                        <a href="#" class="side-menu-btn">
+                           <!-- <i class="fas fa-ellipsis-v"></i> -->
+                             <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
+
+                    </div>
+                    <!-- Main Menu Links -->
+                    <ul id="main-menu" class="nav-menu">
+                        <li class="nav-item">
+                              <a href="/" class="nav-link">Home</a>
+                          </li>
+                        <li class="nav-item">
+                              <a href="/aboutus" class="nav-link">About us</a>
+                          </li>
+                        <li class="nav-item">
+                              <a href="/category" class="nav-link">Category</a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="/contactus" class="nav-link">Contact us</a>
+                          </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+</nav>
+    <!--====================================================================
+                            End Navbar
+    ====================================================================-->
+<!--==================================================================== 
+							Start Side Menu 
+	=====================================================================-->
+<div class="side-menu">
+    
+    <a href="#" class="close-side-menu">
+        <span class="pe-7s-close"></span>
+    </a>
+
+    <div class="inner-side">
+        <!-- Intro side -->
+        <div class="about-side">
+            <img src=" {% static 'assets/images/logo/logo-2.png' %} " alt="logo">
+    
+            <p>Our Strategies At Work Are The Means By Which To Achieve The Desired Goals, And Achieve Your Goals And Dreams Here.</p>
+            
+            <!-- Btn Two -->
+            <a href="/contactus" class="main-btn-two mt-30">
+                <div class="text-btn">
+                    <span class="text-btn-one">Contact Us</span>
+                    <span class="text-btn-two">Contact Us</span>
+                </div>
+                <div class="arrow-btn">
+                    <span class="arrow-one"><i class="fas fa-caret-right"></i></span>
+                    <span class="arrow-two"><i class="fas fa-caret-right"></i></span>
+                </div>
+            </a> 
+        
+        </div>
+        
+        <!-- contact us -->
+        <div class="contact-side">
+            <h6>Contact Info</h6>
+            <div class="line-side"></div>
+            <div class="contact-info">
+
+                <div class="single-contact">
+                    <span class="flaticon-call"></span>
+                    <div class="info-cont">
+                        <a style="color:#9f9a98;" href="tel:9558213618">+91 9558213618</a> <br>
+                        <a style="color:#9f9a98;" href="tel:9377398060">+91 9377398060</a>
+                    </div>
+                </div>
+
+                <div class="single-contact">
+                    <span class="flaticon-email"></span>
+                    <div class="info-cont">
+                        <a style="color:#9f9a98;" href="mailto:krishnaplastics.prakash@gmail.com">krishnaplastics.prakash@gmail.com</a>
+<!--                        <p>support@yourwebsite.com</p>-->
+                    </div>
+                </div>
+
+                <div class="single-contact">
+                    <span class="flaticon-location"></span>
+                     <div class="info-cont">
+                        <p>Gujarat</p>
+                     </div>
+                </div>
+
+
+                <div class="single-contact">
+                    <span class="flaticon-time"></span>
+                    <div class="info-cont">    
+                        <p>Monday - Fraiday, 9am - 5pm,</p>
+                        <p>Saturday & Sunday - CLOSED</p>
+
+                    </div>
+                </div>
+
+
+            </div>
+                        
+        </div>
+        
+        <!-- follow us -->
+        <div class="follow-us">
+            <h6>Follow Us</h6>
+            <div class="line-side"></div>
+            <!-- List Icons Social Media-->
+            <ul class="social-media">
+               <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+               <li><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<!-- Overlay Close Sidebar -->
+<div class="close-menu-sidebar"></div>
+    
+    <!--==================================================================== 
+							End Side Menu 
+	=====================================================================-->
+    
+    <!--==================================================================== 
+							Start Search  
+	=====================================================================-->
+<div class="search-screen">
+    <a href="#" class="close-search"><span class="pe-7s-close"></span></a>
+    <form class="input-search">
+        <input type="search" placeholder="Search Here.. ">
+        <button type="submit" class="search-btn"> <i class="fas fa-search"></i> </button>
+    </form>
+</div>
+    <!--==================================================================== 
+							End Search  
+	=====================================================================-->
+
+   <!--==================================================================== 
+							End Header 
+	=====================================================================-->
+{% block body %} {% endblock %}
+
+<!--==================================================================== 
+                        Start Footer
+=====================================================================--> 
+<footer class="footer footer-default-padding">
+
+    <div class="container">
+        <div class="row footer-row">
+            <div class="col-lg-4 mb-30">
+
+                <div class="footer-widget">
+                    <div class="footer-logo">
+                        <img src=" {% static 'assets/images/logo/logo-1.png' %} " alt="logo">
+                    </div>
+
+                    <p class="mb-30">Our Strategies At Work Are The Means By Which To Achieve The Desired Goals, And Achieve Your Goals And Dreams Here.</p>
+                    <!-- Btn Two -->
+                    <a href=" /aboutus" class="main-btn-three">
+                        <div class="text-btn">
+                            <span class="text-btn-one">More about Us</span>
+                            <span class="text-btn-two">More about Us</span>
+                        </div>
+                        <div class="arrow-btn">
+                            <span class="arrow-one"><i class="fas fa-caret-right"></i></span>
+                            <span class="arrow-two"><i class="fas fa-caret-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4 mb-30">
+                <div class="footer-widget mb-0">
+                    <h4>Company Links</h4>
+                    <div class="line-footer"></div>
+                    <div class="row">
+                        <div class="col-6">
+                            <ul class="footer-link mb-0">
+                                <li>
+                                    <a href="/aboutus">
+                                        <span><i class="fas fa-angle-right"></i></span> About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/contactus">
+                                        <span><i class="fas fa-angle-right"></i></span> Contact Us
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                         <div class="col-6">
+                            <ul class="footer-link mb-0">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="footer-widget">
+                    <h4>Social Links</h4>
+                    <div class="line-footer"></div>
+                    <!-- List Icons Social Media-->
+                    <ul class="social-media">
+                       <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                       <li><a href="#" class="instagram"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-contact">
+            <div class="col-lg-4 col-sm-6 no-padding">
+                <div class="single-item">
+                    <span class="flaticon-call"></span>
+                    <a class="text-dark" href="tel:9377398060"> +91 9377398060</a>
+                    <br>
+                    <a class="text-dark" href="tel:9558213618"> +91 9558213618</a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 no-padding">
+
+                <div class="single-item">
+                    <span class="flaticon-email"></span>
+                    <a class="text-dark" href="mailto:krishnaplastics.prakash@gmail.com">krishnaplastics.prakash@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-12 no-padding">
+                <div class="single-item">
+                    <span class="flaticon-location"></span>
+                    <p>Gujarat, Ahmedabad </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <div class="footer-bar">
+    <div class="container">
+         <div class="footer-copy">
+             <div class="row">
+                <div class="col-12">
+                <div class="copyright">
+                    &copy; 2024 All Rights Reserved By
+                    <a href="/" target="_blank">Krishna Plastics</a>
+                </div>
+                </div>
+             </div>
+        </div>
+    </div>
+   </div>
+</footer>
+<!--==================================================================== 
+                        End Footer
+=====================================================================-->   
+<!-- Scroll To Top -->
+<div class="scroll-up">
+    <i class="fas fa-angle-up"></i>
+</div> 
+<!--==================================================================== 
+                        End Section Content
+=====================================================================-->
+   
+    <!--====================================================================
+                            Include All Js File 
+     ====================================================================-->
+     <!-- All Plugins -->
+     <!--  jQuery js  -->
+    <script src=" {% static 'assets/js/jquery-3.3.1.min.js' %} "></script>
+    <!-- plugins Js  -->
+    <script src=" {% static 'assets/js/plugins.js' %} "></script>
+    <script src=" {% static 'assets/js/responsive.js' %} "></script>
+    <!-- My Custom Js  -->
+    <script src=" {% static 'assets/js/custom.js' %} "></script>
+</body>
+</html>

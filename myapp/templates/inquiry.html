@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Inquiry {% endblock %}
+{% block body %}
+<section id="page" class="header-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <span class="page-title-line">Inquiry</span>
+                <h1 class="page-title-heading">Product inquiry
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+    <!--====================================================================
+							contact us page
+	=====================================================================-->
+<section class="contact-us-page  pt-120 pb-60">  
+    <div class="container">
+        
+        
+        <div class="row">
+            
+            
+            <div class="col-12">
+                
+                
+                <div class="contact-us-meta">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="contact-item">
+                                <div class="inner-contact">
+                                    <span><i class="fa fa-phone"></i></span>
+                                    <h4>Phone</h4>
+                                </div>
+                                
+                                <p>+(02) 0114-9912-318</p>
+                                <p>+(02) 0111-7457-354</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="contact-item">
+                                <div class="inner-contact">
+                                    <span><i class="fa fa-envelope"></i></span>
+                                    <h4>Email</h4>
+                                </div>
+                                
+                                <p>Hello@example.com</p>
+                                <p>support@yourwebsite.com</p>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="contact-item">
+                                <div class="inner-contact">
+                                    <span><i class="fa fa-location-arrow"></i></span>
+                                    <h4>Address</h4>
+                                </div>
+                                
+                                <p>US - Los Angeles 5135 - 4234</p>
+                                <p>In The Center Street Name Here</p>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="contact-item">
+                                <div class="inner-contact">
+                                    <span><i class="fas fa-clock"></i></span>
+                                    <h4>Online work </h4>
+                                </div>
+                                
+                                <p>Monday - Fraiday, 9am - 5pm,</p>
+                                <p>Saturday & Sunday - CLOSED</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="line-contact"></div>
+                    <div class="row content-statistics">
+            <div class="col-lg-6 no-padding text-support">
+                <div class="section-title-left">
+                    <h2 class="color-gray"> Inquiry</h2>
+                    <h3>Request a product</h3>
+                </div>
+                <p class="p-support">Get a free quote for your product inquiry. Provide details, and we'll get back to you promptly.</p>
+
+
+        <div class="contact-support">
+            <h6>Do You Have Any Question?</h6>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="single-contact">
+                        <span class="flaticon-call"></span>
+                        <div class="info-cont">
+                            <p>+(02) 0114-9912-318</p>
+                            <p>+(02) 0111-7457-354</p>
+                        </div>
+                    </div>
+
+                     </div>
+
+                    <div class="col-sm-6">
+                        <div class="single-contact">
+                            <span class="flaticon-email"></span>
+                            <div class="info-cont">
+                                <p>Hello@example.com</p>
+                                <p>support@yourwebsite.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            </div>
+            </div>
+            <div class="col-lg-6 no-padding">
+                <form action="/sendinquiry" method="post">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" id="name" class="form-control" name="name" placeholder="Name" value="{{data.name}}" readonly>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <input type="email" id="email" name="email" placeholder="Your Email" value="{{data.email}}" readonly>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" name="phone" placeholder="Your Phone Number" value="{{data.phone}}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="hidden" name="proid" value="{{id}}">
+                            <input type="text" name="productname" placeholder="Product Name" value="{{productdata.name}}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="number" name="quantity" placeholder="No of quantity" style="width: 100%; height: 50px;padding: 13px 20px;border: 1px solid #eee;">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="number" name="budget" placeholder="Enter your budget" style="width: 100%;height: 50px;padding: 13px 20px;border: 1px solid #eee;">
+                        </div>
+                    </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message Here "></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <!-- Btn Two -->
+                        <button type="submit" class="main-btn-four" style="border: none;background: #ff6119;">
+                        <div class="text-btn">
+                            <span class="text-btn-one">Submit Request</span>
+                            <span class="text-btn-two">Submit Request</span>
+                        </div>
+                        <div class="arrow-btn">
+                            <span class="arrow-one"><i class="fas fa-caret-right"></i></span>
+                            <span class="arrow-two"><i class="fas fa-caret-right"></i></span>
+                        </div>
+                    </button>
+                    </div>
+
+                </div>
+                </form>
+            </div>
+        </div>
+                    <section id="service" class="services services-one ptb-120">
+
+                    </section>
+                </div>
+            </div>
+       
+        </div>
+    </div>  
+</section>
+    
+    <!--==================================================================== 
+							End contact us page
+	=====================================================================-->
+{% endblock %}

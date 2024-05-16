@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{singledata.name}} {% endblock %}
+{% block body %}
+<section id="page" class="header-breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="page-title-heading">{{singledata.name}}</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li><i class="fas fa-angle-right"></i></li>
+                    <li>product</li>
+                    <li><i class="fas fa-angle-right"></i></li>
+                    <li>{{singledata.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+    <!--====================================================================
+							Start Section Services
+	=====================================================================-->
+<div id="service" class="single-services services-page pt-120 pb-40">
+    <!--========== My Services Info ==========-->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-4">
+            <div class="left-side-bar">
+     
+                
+                <div class="widget mb-30">
+                    <div class="body-widget">
+                        <div class="title-widget">
+                            <h3>Category</h3>
+                        </div>
+                        
+                       <ul class="links-services">
+                           {% for cat in catdata %}
+                        <li class="active"><a href="/products/{{cat.id}}">
+                            <i class="fas fa-long-arrow-alt-right"></i> {{cat.catname}}
+                            </a>
+                        </li>
+                           {% endfor %}
+                    </ul>
+                    
+                    </div>
+                    
+                </div>
+                <div class="widget mb-30">
+                    <div class="body-widget">
+                        <div class="title-widget">
+                            <h3>How Can We Help You</h3>
+                        </div>
+                        
+                        <div class="inner-widget">
+                        <p>At Krishna Plastic,
+                            we are committed to providing high-quality plastic bags that meet your packaging needs while also being environmentally conscious.
+                            Our range includes biodegradable and reusable options,
+                            ensuring that you can make a sustainable choice without compromising on functionality or convenience.
+                            With our products, you can confidently package your goods while contributing to the reduction of single-use plastic waste.</p>
+
+                            <a href="/contactus" class="main-btn-two">
+                            <div class="text-btn">
+                                <span class="text-btn-one">Contact Us</span>
+                                <span class="text-btn-two">Contact Us</span>
+                            </div>
+                            <div class="arrow-btn">
+                                <span class="arrow-one"><i class="fas fa-caret-right"></i></span>
+                                <span class="arrow-two"><i class="fas fa-caret-right"></i></span>
+                            </div>
+                        </a> 
+                    </div>
+                        
+                    </div>
+                    
+                </div>
+                
+          
+                
+             </div>   
+            </div>
+            
+            <div class="col-lg-8 order-first order-lg-last mb-30">
+                <div class="container-service-details">
+                    
+                    <div class="signle-services-item">
+                        <div class="title-single-service">
+                            <h3>{{singledata.name}}</h3>
+                        </div>
+                        <p class="mb-30">{{singledata.description}}</p>
+
+
+
+                        <div class="img-services-details">
+                            <img src="/media/{{singledata.image}}" alt="services" width="800" height="400">
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="signle-services-item">
+                        <div class="title-single-service">
+                            <h3>Product details</h3>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="indicator">
+                                    <li>Color: {{singledata.color.color}}</li>
+                                    <li>Shape: {{singledata.shape}}</li>
+                                    <li>Usage: {{singledata.usage}}</li>
+                                    <li>Size: {{singledata.size}}</li>
+                                    <li>Material: {{singledata.material_type}}</li>
+                                    <li>Price: <span class="fa fa-rupee-sign">{{singledata.price}}</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-6 img-indicator">
+                                 <img src="/media/{{prodimage.image}}" alt="services" width="600" height="400">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if request.session.log_id %}
+                <a href="/inquiry/{{singledata.id}}" class="main-btn-two">
+                            <div class="text-btn">
+                                <span class="text-btn-one">Place an inquiry</span>
+                                <span class="text-btn-two">Place an inquiry</span>
+                            </div>
+                            <div class="arrow-btn">
+                                <span class="arrow-one"><i class="fas fa-caret-right"></i></span>
+                                <span class="arrow-two"><i class="fas fa-caret-right"></i></span>
+                            </div>
+                        </a>
+                {% else %}
+                <a href="/" class="main-btn-two">
+                            <div class="text-btn">
+                                <span class="text-btn-one">Login</span>
+                                <span class="text-btn-two">Login</span>
+                            </div>
+                            <div class="arrow-btn">
+                                <span class="arrow-one"><i class="fas fa-caret-right"></i></span>
+                                <span class="arrow-two"><i class="fas fa-caret-right"></i></span>
+                            </div>
+                        </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+    <!--==================================================================== 
+							End Section Services
+	=====================================================================-->
+{% endblock %}

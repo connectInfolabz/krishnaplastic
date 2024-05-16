@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Products {% endblock %}
+{% block body %}
+   <!--====================================================================
+							Start Section Services
+	=====================================================================-->
+<section id="service" class="services services-page pt-120 pb-80">
+    <!--========== My Services Info ==========-->
+    <div class="container">
+
+<div class="row">
+    {% for data in catdata %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="services-item-one">
+                        <div class="img-services">
+                            <!-- Image OF Case -->
+                            <img src="/media/{{data.catimage}}" alt="services" width="600" height="400">
+                        </div>
+
+                        <div class="content-box">
+                            <h4>{{data.catname}}</h4>
+                            <a href="/products/{{data.id}}" class="btn-read-more">
+                                <div class="text-btn">Read More</div>
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+    {% endfor %}
+            </div>
+
+            </div>
+
+
+
+</section>
+    <!--====================================================================
+							End Section Services
+	=====================================================================-->
+{% endblock %}

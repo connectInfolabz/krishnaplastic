@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Products {% endblock %}
+{% block body %}
+   <!--==================================================================== 
+							Start Section Services
+	=====================================================================-->
+<section id="service" class="services services-page pt-120 pb-80">
+    <!--========== My Services Info ==========-->
+    <div class="container">
+
+<div class="row">
+                <!-- New Item -->
+    {% for data in products %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="services-item-one"> 
+                        <div class="img-services">
+                            <!-- Image OF Case -->
+                            <img src="/media/{{data.image}}" alt="services">
+                            
+                           
+                        </div>
+                            
+              
+                        <div class="content-box">
+                            <h4>{{data.name}}</h4>
+                            <p>{{data.description}}</p>
+
+                            
+                            <a href="/productdetail/{{data.id}}" class="btn-read-more">
+                                <div class="text-btn">Read More</div>
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </a>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+    {% endfor %}
+                </div>
+    </div>
+</section>     
+    <!--==================================================================== 
+							End Section Services
+	=====================================================================-->
+{% endblock %}
